@@ -1,18 +1,14 @@
+// app/product/[id]/page.js
 import React from "react";
-import DisplayProduct from "../components/DisplayProduct";
-import { generateMetadata } from "../lib/generateMetadata";
-import getProduct from "../lib/getProduct";
+import { notFound } from "next/navigation";
+import DisplayProduct from "../../../components/DisplayProduct";
+import getProducts from "../../../lib/woocommerce";
 
-const Page = async () => {
-  const id = "12";
-
-  // const { id } = params;
-  const product = await getProduct(id);
-
-  console.log("product", product);
+const Page = async ({ params }) => {
+  const product = await getProducts;
 
   if (!product) {
-    return <p>Product not found or an error occurred.</p>;
+    notFound();
   }
 
   return (
