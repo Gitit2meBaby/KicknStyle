@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 
@@ -5,22 +6,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3003"
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ),
-  title: {
-    template: "%s | Your Store Name",
-    default: "Your Store Name - Premium Products",
-  },
-  description: "Your Store Name - Discover our premium collection of products",
+  title: "Kick & Style",
+  description: "Kick & Style - Discover our premium collection of products",
   keywords: ["ecommerce", "online store", "premium products"],
-  authors: [{ name: "Your Store Name" }],
-  creator: "Your Store Name",
-  publisher: "Your Store Name",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -31,7 +21,7 @@ export const metadata = {
     type: "website",
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_SITE_URL,
-    siteName: "Your Store Name",
+    siteName: "Kick & Style",
     images: [
       {
         url: "/og-image.jpg",
@@ -55,28 +45,28 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  // verification: {
+  //   google: "your-google-verification-code",
+  // },
 };
 
 // Generate organization schema
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Your Store Name",
+  name: "Kick & Style",
   url: process.env.NEXT_PUBLIC_SITE_URL,
   logo: `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`,
-  sameAs: [
-    "https://www.facebook.com/yourstore",
-    "https://www.instagram.com/yourstore",
-    // Add other social media URLs
-  ],
+  // sameAs: [
+  //   "https://www.facebook.com/yourstore",
+  //   "https://www.instagram.com/yourstore",
+  // ],
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+1-123-456-7890",
+    email: "contact.kickandstyle@gmail.com",
+    // telephone: "+1-123-456-7890",
     contactType: "customer service",
-    availableLanguage: ["English"],
+    availableLanguage: ["French, English"],
   },
 };
 
@@ -84,7 +74,7 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Your Store Name",
+  name: "Kick & Style",
   url: process.env.NEXT_PUBLIC_SITE_URL,
   potentialAction: {
     "@type": "SearchAction",
@@ -113,7 +103,10 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

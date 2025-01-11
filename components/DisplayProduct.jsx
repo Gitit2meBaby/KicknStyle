@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 
 const ProductDisplay = ({
@@ -149,32 +150,13 @@ const ProductDisplay = ({
       </div>
       <div>
         <strong>Images:</strong>
-        {images.length > 0 ? (
-          <img
-            src={images[selectedImage]?.src}
-            alt={images[selectedImage]?.alt || "Product Image"}
-            style={{ maxWidth: "100%" }}
-          />
-        ) : (
-          <p>No images available.</p>
-        )}
-        {images.length > 1 && (
-          <div>
-            {images.map((img, index) => (
-              <img
-                key={img.id}
-                src={img.src}
-                alt={img.alt || `Image ${index + 1}`}
-                style={{
-                  maxWidth: "50px",
-                  cursor: "pointer",
-                  border: selectedImage === index ? "2px solid blue" : "none",
-                }}
-                onClick={() => setSelectedImage(index)}
-              />
-            ))}
-          </div>
-        )}
+        <Image
+          src={images?.[selectedImage]?.src || ""}
+          alt={images?.[selectedImage]?.alt || name}
+          onClick={() => setSelectedImage(index)}
+          width={600}
+          height={600}
+        />
       </div>
       <div>
         <strong>Shipping Required:</strong> {shippingRequired ? "Yes" : "No"}
@@ -184,19 +166,19 @@ const ProductDisplay = ({
       </div>
       <div>
         <strong>Categories:</strong>{" "}
-        {categories.map((category) => category.name).join(", ")}
+        {categories?.map((category) => category.name).join(", ")}
       </div>
       <div>
-        <strong>Tags:</strong> {tags.map((tag) => tag.name).join(", ")}
+        <strong>Tags:</strong> {tags?.map((tag) => tag.name).join(", ")}
       </div>
       <div>
         <strong>Weight:</strong> {weight || "Not specified"}
       </div>
-      <div>
+      {/* <div>
         <strong>Dimensions:</strong> {dimensions.length || "Not specified"} x{" "}
         {dimensions.width || "Not specified"} x{" "}
         {dimensions.height || "Not specified"}
-      </div>
+      </div> */}
       <div>
         <button
           onClick={() =>

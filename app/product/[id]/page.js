@@ -12,7 +12,14 @@ const Page = async ({ params }) => {
   }
 
   return (
-    <div>
+    <section>
+      {/* <script
+        id="product-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productSchema),
+        }}
+      /> */}
       <DisplayProduct
         id={product.id}
         name={product.name}
@@ -86,7 +93,7 @@ const Page = async ({ params }) => {
         customField={product.custom_field}
         links={product._links}
       />
-    </div>
+    </section>
   );
 };
 
