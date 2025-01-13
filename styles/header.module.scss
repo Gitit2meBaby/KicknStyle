@@ -1,0 +1,58 @@
+@import "./globals.scss";
+
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  z-index: 5;
+
+  .headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 5vw;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+  }
+
+  a {
+    text-decoration: none;
+    color: $light;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      font-weight: 800;
+    }
+  }
+}
+
+.cartHolder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $light;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  svg {
+    margin-top: 0.2rem;
+    fill: $light;
+    &:hover {
+      fill: $light;
+    }
+  }
+
+  &:hover {
+    background-color: $dark;
+    transition: all 0.3s ease-in-out;
+  }
+}

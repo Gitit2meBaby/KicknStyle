@@ -1,0 +1,12 @@
+@import "./globals.scss";
+
+.sliderWrapper {
+  background-color: $light;
+  padding: 2rem 0;
+  h3 {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    opacity: 0.5;
+  }
+}

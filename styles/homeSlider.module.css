@@ -1,0 +1,10 @@
+.sliderWrapper {
+  background-color: #f2f2f2;
+  padding: 2rem 0;
+}
+.sliderWrapper h3 {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  opacity: 0.5;
+}/*# sourceMappingURL=homeSlider.module.css.map */

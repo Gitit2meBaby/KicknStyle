@@ -1,0 +1,17 @@
+@import "./globals.scss";
+
+.cartCounter {
+  position: absolute;
+  top: -0.7rem;
+  right: -0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  background-color: $theme;
+  border-radius: 50%;
+  color: $light;
+  font-size: 12px;
+  font-weight: 700;
+}

@@ -1,0 +1,46 @@
+.card {
+  display: block;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.imageWrapper {
+  position: relative;
+  padding-bottom: 100%;
+  background: #f5f5f5;
+}
+
+.image {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.content {
+  padding: 1rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.price {
+  font-weight: 600;
+  color: #666;
+}
+.price del {
+  color: #999;
+  margin-right: 0.5rem;
+}
+.price ins {
+  color: #e53e3e;
+  text-decoration: none;
+}/*# sourceMappingURL=productCard.module.css.map */

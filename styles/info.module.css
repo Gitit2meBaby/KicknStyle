@@ -1,0 +1,17 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 6rem 1rem;
+}
+.info h2 {
+  margin: 1rem;
+}
+.info p {
+  text-align: center;
+  max-width: 75vw;
+  line-height: 2rem;
+}
+.info button {
+  margin-top: 2rem;
+}/*# sourceMappingURL=info.module.css.map */

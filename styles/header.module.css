@@ -1,0 +1,51 @@
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+.header .headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 5vw;
+}
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+}
+.header a {
+  text-decoration: none;
+  color: #f2f2f2;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+.header a:hover {
+  font-weight: 800;
+}
+
+.cartHolder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f2f2f2;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.cartHolder svg {
+  margin-top: 0.2rem;
+  fill: #f2f2f2;
+}
+.cartHolder svg:hover {
+  fill: #f2f2f2;
+}
+.cartHolder:hover {
+  background-color: #1a1a1a;
+  transition: all 0.3s ease-in-out;
+}/*# sourceMappingURL=header.module.css.map */
