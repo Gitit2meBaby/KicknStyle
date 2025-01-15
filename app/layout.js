@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 
 import "./global.css";
+import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -66,7 +67,7 @@ const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     email: "contact.kickandstyle@gmail.com",
-    // telephone: "+1-123-456-7890",
+    telephone: "+66830502134",
     contactType: "customer service",
     availableLanguage: ["French, English"],
   },
@@ -108,6 +109,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Header />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

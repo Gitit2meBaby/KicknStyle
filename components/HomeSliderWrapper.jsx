@@ -13,16 +13,18 @@ import styles from "../styles/homeSlider.module.css";
 const HomeSliderWrapper = async () => {
   const categories = await getCategoriesWithFeaturedImage();
 
-  console.log("Categories in wrapper:", categories); // Debug log
+  const filteredCategories = categories.filter(
+    (cat) => cat.slug !== "uncategorized"
+  );
 
-  if (!categories?.length) {
+  if (!filteredCategories?.length) {
     return <div>No categories found</div>;
   }
 
   return (
     <section className={styles.sliderWrapper}>
       <h3>Check out our products by category</h3>
-      <HomeSlider categories={categories} />
+      <HomeSlider categories={filteredCategories} />
     </section>
   );
 };

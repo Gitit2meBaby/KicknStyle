@@ -1,0 +1,144 @@
+// styles/cartModal.module.scss
+$modal-bg: white;
+$overlay-bg: rgba(0, 0, 0, 0.5);
+$border-color: #e2e8f0;
+$primary-color: #4a5568;
+$hover-color: #2d3748;
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $overlay-bg;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: $modal-bg;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  padding: 1.5rem;
+  position: relative;
+  overflow-y: auto;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cartItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid $border-color;
+  border-radius: 0.5rem;
+  align-items: center;
+}
+
+.itemImage {
+  img {
+    border-radius: 0.25rem;
+    object-fit: cover;
+  }
+}
+
+.itemDetails {
+  h3 {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .variant {
+    font-size: 0.875rem;
+    color: $primary-color;
+  }
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  button {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f7fafc;
+    }
+  }
+}
+
+.cartFooter {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid $border-color;
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.checkoutBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #1a202c;
+  }
+}
+
+.removeBtn {
+  padding: 0.25rem 0.5rem;
+  background: none;
+  border: 1px solid $border-color;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+
+  &:hover {
+    background-color: #f7fafc;
+    color: #e53e3e;
+  }
+}

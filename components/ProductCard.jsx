@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
   const imageUrl = images?.[0]?.src || "/placeholder-product.jpg";
 
   return (
-    <Link href={`/product/${slug}`} className={styles.card}>
+    <Link href={`/produits/${slug}`} className={styles.card}>
       <div className={styles.imageWrapper}>
         <Image
           src={imageUrl}

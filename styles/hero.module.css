@@ -4,12 +4,17 @@
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 .hero img {
   position: absolute;
   z-index: 0;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .hero h1 {
   font-size: clamp(2rem, 10vw, 10rem);
@@ -26,12 +31,11 @@
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 32vw;
+  gap: 27vw;
   text-transform: uppercase;
   font-weight: 900;
   font-size: clamp(1rem, 3vw, 2rem);
   color: #f2f2f2;
-}
-.subs h2 {
-  margin: 0;
+  text-align: center;
+  margin-top: -1rem;
 }/*# sourceMappingURL=hero.module.css.map */

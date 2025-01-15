@@ -1,3 +1,111 @@
 .categoryNav {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.categoriesList {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.categoryLink {
+  padding: 0.5rem;
+  text-decoration: none;
+  color: #666;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+.categoryLink:hover {
+  background: #f5f5f5;
+  color: #000;
+}
+.categoryLink.active {
+  background: #f0f0f0;
+  color: #000;
+  font-weight: 600;
+  border-left: 3px solid var(--primary-color, #0070f3);
+  padding-left: 0.75rem;
+}
+
+.filters {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.filtersTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.filterSection {
+  margin-bottom: 1rem;
+}
+.filterSection:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-weight: 500;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.sectionTitle::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+.sectionTitle[open]::after {
+  transform: rotate(-135deg);
+}
+
+.filterContent {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.filterOption {
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0;
+  cursor: pointer;
+}
+.filterOption input {
+  margin-right: 0.75rem;
+}
+.filterOption span {
+  color: #666;
+  font-size: 0.9rem;
+}
+.filterOption:hover span {
+  color: #000;
+}
+.filterOption.anyOption {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+.filterOption.anyOption span {
+  font-weight: 500;
+  color: #333;
+}
+
+.loading {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
 }/*# sourceMappingURL=categoryNav.module.css.map */

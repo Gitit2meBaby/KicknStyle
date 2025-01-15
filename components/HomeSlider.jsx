@@ -51,7 +51,7 @@ const HomeSlider = ({ categories }) => {
       <Slider {...settings}>
         {categories.map((category) => (
           <Link
-            href={`/category/${category.slug}`}
+            href={`/categorie/${category.slug}`}
             key={category.id}
             className={styles.slideLink}
           >

@@ -1,0 +1,229 @@
+.container {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 50;
+}
+@media (min-width: 768px) {
+  .container {
+    left: auto;
+    right: 1rem;
+    max-width: 28rem;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 95vw;
+  }
+}
+
+.alert {
+  position: relative;
+  background-color: white;
+  border-radius: 0.1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  margin-top: 0.5rem;
+}
+
+.message {
+  margin-bottom: 1rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+.message a {
+  color: #7b2ce9;
+  text-decoration: underline;
+}
+.message a:hover {
+  color: #6215cd;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .buttonGroup {
+    flex-direction: column;
+  }
+}
+
+.acceptButton {
+  padding: 0.5rem 1rem;
+  background-color: #7b2ce9;
+  color: #f2f2f2;
+  border: none;
+  border-radius: 0.1rem;
+  font-weight: 700;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex: 1;
+}
+.acceptButton:hover {
+  background-color: #05a605;
+}
+.acceptButton:focus {
+  outline: 2px solid #05a605;
+  outline-offset: 2px;
+}
+
+.declineButton {
+  padding: 0.5rem 1rem;
+  background-color: #f2f2f2;
+  color: #4b5563;
+  border: 1px solid #f2f2f2;
+  border-radius: 0.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+.declineButton:hover {
+  background-color: #ff0909;
+  color: #f2f2f2;
+}
+.declineButton:focus {
+  outline: 2px solid #ff0909;
+  outline-offset: 2px;
+}
+
+.preferencesButton {
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+.preferencesButton:hover {
+  background-color: #e5e7eb;
+}
+.preferencesButton:focus {
+  outline: 2px solid #9ca3af;
+  outline-offset: 2px;
+}
+
+.preferences .cookieTypes {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.preferences .cookieType {
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 0.1rem;
+  border: 1px solid #e5e7eb;
+}
+.preferences .cookieType label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+.preferences .cookieType input[type=checkbox] {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.1rem;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+}
+.preferences .cookieType input[type=checkbox]:checked {
+  background-color: #7b2ce9;
+  border-color: #7b2ce9;
+}
+.preferences .cookieType input[type=checkbox]:disabled {
+  background-color: #e5e7eb;
+  cursor: not-allowed;
+}
+.preferences .cookieType p {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-left: 1.5rem;
+}
+
+.backButton {
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+.backButton:hover {
+  background-color: #e5e7eb;
+}
+
+.saveButton {
+  padding: 0.5rem 1rem;
+  background-color: #7b2ce9;
+  color: #f2f2f2;
+  border: none;
+  border-radius: 0.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex: 1;
+}
+.saveButton:hover {
+  background-color: #05a605;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+.closeButton:hover {
+  color: #374151;
+}
+.closeButton svg {
+  width: 1rem;
+  height: 1rem;
+  stroke-width: 2;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}/*# sourceMappingURL=cookieConsent.module.css.map */

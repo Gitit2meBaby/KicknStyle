@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { The_Nautigal } from "next/font/google";
+import { Notable, The_Nautigal } from "next/font/google";
 
 import styles from "../styles/hero.module.scss";
 
@@ -10,6 +10,12 @@ const nautigal = The_Nautigal({
   subsets: ["latin"],
   weight: ["700"],
 });
+
+const noteable = Notable({
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 const Hero = () => {
   return (
     <section className={styles.hero}>
@@ -21,10 +27,14 @@ const Hero = () => {
         fill
         priority
       />
-      <h1 className={nautigal.className}>Muay Thai Fashion</h1>
+      <h1 className={nautigal.className}>Muay Thai Mode</h1>
       <div className={styles.subs}>
-        <h2>For Boys</h2>
-        <h2>For Girls</h2>
+        <h2 className={noteable.className}>
+          pour les<br></br> garçons
+        </h2>
+        <h2 className={noteable.className}>
+          pour les<br></br> filles
+        </h2>
       </div>
     </section>
   );

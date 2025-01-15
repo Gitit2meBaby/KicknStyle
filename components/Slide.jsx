@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import styles from "../styles/slide.module.css";
 
-const Slide = ({ category, index }) => {
+const Slide = ({ category }) => {
   return (
     <div className={styles.slide}>
       <div className={styles.imageWrapper}>
@@ -25,7 +25,7 @@ const Slide = ({ category, index }) => {
           <div className={styles.placeholder}>{category.name[0]}</div>
         )}
       </div>
-      <p className={styles.count}>{category.count} products</p>
+      <p className={styles.count}>{category.count} produits</p>
     </div>
   );
 };

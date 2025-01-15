@@ -4,7 +4,7 @@ import styles from "../styles/productGrid.module.scss";
 
 const ProductGrid = ({ products }) => {
   if (!products?.length) {
-    return <div className="text-center py-8">No products found</div>;
+    return <div>No products found</div>;
   }
 
   return (
