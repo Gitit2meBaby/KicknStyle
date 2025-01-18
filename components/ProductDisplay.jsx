@@ -7,6 +7,7 @@ import {
   getPrintfulColorName,
   getSwatchColor,
   isDarkColor,
+  extractHexCode,
 } from "../lib/colorSystem";
 
 import styles from "../styles/productDisplay.module.scss";
@@ -173,30 +174,33 @@ const ProductDisplay = ({
   };
 
   // New function to find image index by color
+  // Update the findImageIndexByColor function
   const findImageIndexByColor = (colorName) => {
     const printfulColor = getPrintfulColorName(colorName);
     console.log("Looking for color:", printfulColor);
 
     return images.findIndex((image) => {
-      // Normalize image metadata to match Printful's format
+      // Check for hex code in image metadata first
+      const imageTitle = image.name || image.title || image.alt || "";
+      const hexCode = extractHexCode(imageTitle);
+
+      if (hexCode) {
+        // If the color name itself is a hex code, compare directly
+        const colorHex = extractHexCode(colorName);
+        if (colorHex) {
+          return hexCode.toLowerCase() === colorHex.toLowerCase();
+        }
+      }
+
+      // If no hex match, fall back to text matching
       const alt = (image.alt || "").toLowerCase().trim();
       const name = (image.name || "").toLowerCase().trim();
 
-      // Check for both hyphenated and space-separated versions
       const searchTerms = [
         printfulColor,
         printfulColor.replace(/-/g, " "), // hyphen to space
         printfulColor.replace(/\s+/g, "-"), // space to hyphen
       ];
-
-      console.log("Checking image:", {
-        alt,
-        name,
-        searchTerms,
-        matches: searchTerms.some(
-          (term) => alt.includes(term) || name.includes(term)
-        ),
-      });
 
       return searchTerms.some(
         (term) => alt.includes(term) || name.includes(term)
@@ -204,28 +208,13 @@ const ProductDisplay = ({
     });
   };
 
-  const handleVariantChange = (attributeName, value) => {
-    setSelectedVariants((prev) => ({
-      ...prev,
-      [attributeName.toLowerCase()]: value,
-    }));
-
-    if (isColorAttribute(attributeName)) {
-      console.log("Color change attempted:", value);
-      const imageIndex = findImageIndexByColor(value);
-      console.log("Found image index:", imageIndex, "for color:", value);
-
-      if (imageIndex !== -1) {
-        setSelectedImage(imageIndex);
-      } else {
-        console.log("No matching image found for color:", value);
-        console.log("Available images:", images);
-      }
-    }
-  };
-
+  // Update the renderColorOption function to use the new image-aware color swatch system
   const renderColorOption = (option, attributeName, isSelected) => {
-    const backgroundColor = getSwatchColor(option);
+    // Find the corresponding image for this color option
+    const imageIndex = findImageIndexByColor(option);
+    const matchingImage = imageIndex !== -1 ? images[imageIndex] : null;
+
+    const backgroundColor = getSwatchColor(option, matchingImage);
     const isDark = isDarkColor(option);
 
     return (
@@ -251,6 +240,54 @@ const ProductDisplay = ({
       </label>
     );
   };
+
+  const handleVariantChange = (attributeName, value) => {
+    setSelectedVariants((prev) => ({
+      ...prev,
+      [attributeName.toLowerCase()]: value,
+    }));
+
+    if (isColorAttribute(attributeName)) {
+      console.log("Color change attempted:", value);
+      const imageIndex = findImageIndexByColor(value);
+      console.log("Found image index:", imageIndex, "for color:", value);
+
+      if (imageIndex !== -1) {
+        setSelectedImage(imageIndex);
+      } else {
+        console.log("No matching image found for color:", value);
+        console.log("Available images:", images);
+      }
+    }
+  };
+
+  // const renderColorOption = (option, attributeName, isSelected) => {
+  //   const backgroundColor = getSwatchColor(option);
+  //   const isDark = isDarkColor(option);
+
+  //   return (
+  //     <label
+  //       key={option}
+  //       className={`${styles.colorOption} ${
+  //         isSelected ? styles.selectedColor : ""
+  //       }`}
+  //       title={option}
+  //     >
+  //       <input
+  //         type="radio"
+  //         name={attributeName}
+  //         value={option}
+  //         checked={isSelected}
+  //         onChange={() => handleVariantChange(attributeName, option)}
+  //         className={styles.hiddenRadio}
+  //       />
+  //       <span
+  //         className={`${styles.colorSwatch} ${isDark ? styles.darkColor : ""}`}
+  //         style={{ backgroundColor }}
+  //       ></span>
+  //     </label>
+  //   );
+  // };
 
   const renderVariantOptions = (attribute) => {
     const isColor = isColorAttribute(attribute.name);

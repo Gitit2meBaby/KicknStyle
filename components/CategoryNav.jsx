@@ -3,20 +3,21 @@
 import React, { useState, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+
 import {
   getCategories,
   getAttributes,
   getAttributeTerms,
-  getProducts,
 } from "../lib/woocommerce";
+
 import styles from "../styles/categoryNav.module.scss";
 
 const PriceRanges = [
-  { min: 0, max: 250000, label: "Any" },
-  { min: 0, max: 25, label: "Under $25" },
-  { min: 25, max: 50, label: "$25 - $50" },
-  { min: 50, max: 100, label: "$50 - $100" },
-  { min: 100, max: null, label: "Over $100" },
+  { min: 0, max: 250000, label: "n'importe lequel" },
+  { min: 0, max: 25, label: "sous €25" },
+  { min: 25, max: 50, label: "€25 - €50" },
+  { min: 50, max: 100, label: "€50 - €100" },
+  { min: 100, max: null, label: "sur €100" },
 ];
 
 export default function CategoryNav() {
@@ -153,11 +154,11 @@ export default function CategoryNav() {
       {/* Only show filters if we're in a category */}
       {currentSlug && currentSlug !== "catalogue" && (
         <div className={styles.filters}>
-          <h3 className={styles.filtersTitle}>Filters</h3>
+          <h3 className={styles.filtersTitle}>Filtres</h3>
 
           {/* Price Filter Section */}
           <details className={styles.filterSection}>
-            <summary className={styles.sectionTitle}>Price Range</summary>
+            <summary className={styles.sectionTitle}>Prix</summary>
             <div className={styles.filterContent}>
               {PriceRanges.map((range, index) => (
                 <label key={index} className={styles.filterOption}>
@@ -168,7 +169,7 @@ export default function CategoryNav() {
                       activeFilters.price?.min === range.min &&
                       activeFilters.price?.max === range.max
                     }
-                    onChange={() => updateFilters("price", range)}
+                    onChange={() => updateFilters("Prix", range)}
                   />
                   <span>{range.label}</span>
                 </label>
@@ -200,7 +201,7 @@ export default function CategoryNav() {
                       router.push(`${pathname}?${params.toString()}`);
                     }}
                   />
-                  <span>Any</span>
+                  <span>n'importe lequel</span>
                 </label>
 
                 {/* Individual attribute terms */}

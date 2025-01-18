@@ -1,0 +1,31 @@
+.shippingInfo {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+.shippingInfo .deliveryTime,
+.shippingInfo .shippingCost {
+  margin-bottom: 0.5rem;
+}
+.shippingInfo .deliveryTime strong,
+.shippingInfo .shippingCost strong {
+  font-weight: 600;
+}
+.shippingInfo .customsWarning {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 4px;
+  color: #856404;
+}
+.shippingInfo .customsWarning p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.shippingInfo .customsWarning p:first-child {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}/*# sourceMappingURL=shippingInfo.module.css.map */

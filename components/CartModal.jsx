@@ -158,7 +158,7 @@ const CartModal = ({ isOpen, onClose }) => {
                 className={styles.checkoutBtn}
                 onClick={() => {
                   onClose();
-                  router.push("/checkout");
+                  router.push("/commande");
                 }}
               >
                 Proceed to Checkout

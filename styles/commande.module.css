@@ -1,0 +1,165 @@
+.checkoutPage {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.checkoutPage h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.checkoutPage h2 {
+  margin-bottom: 1.5rem;
+}
+
+.orderSummary {
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+.cartItem:last-child {
+  border-bottom: none;
+}
+.cartItem .productImage {
+  flex: 0 0 60px;
+  height: 60px;
+  position: relative;
+  margin-right: 1rem;
+}
+.cartItem .productImage img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+}
+.cartItem .productInfo {
+  flex: 1;
+}
+.cartItem .productInfo h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+.cartItem .productInfo .variants {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0.25rem 0;
+}
+.cartItem .productInfo .quantity {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+}
+.cartItem .price {
+  font-weight: bold;
+  min-width: 100px;
+  text-align: right;
+}
+
+.totals {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #eee;
+}
+.totals > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.totals > div:last-child {
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.checkoutForm {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.checkoutForm .formGroup {
+  margin-bottom: 2rem;
+}
+.checkoutForm .formGroup input,
+.checkoutForm .formGroup select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.checkoutForm .formGroup input:focus,
+.checkoutForm .formGroup select:focus {
+  outline: none;
+  border-color: #666;
+}
+.checkoutForm .formRow {
+  display: flex;
+  gap: 1rem;
+}
+.checkoutForm .formRow input {
+  flex: 1;
+}
+
+.consentSection {
+  margin-bottom: 2rem;
+}
+.consentSection .consentLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+.consentSection .consentLabel input[type=checkbox] {
+  margin-top: 0.25rem;
+}
+
+.orderNotes {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+.orderNotes h3 {
+  margin-bottom: 0.5rem;
+}
+.orderNotes ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.orderNotes ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+.orderNotes ul li:last-child {
+  margin-bottom: 0;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background: #000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.submitButton:hover {
+  background: #333;
+}
+.submitButton:disabled {
+  background: #ccc;
+}/*# sourceMappingURL=commande.module.css.map */
