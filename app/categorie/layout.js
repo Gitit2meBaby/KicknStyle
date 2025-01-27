@@ -1,14 +1,15 @@
 import React from "react";
 
-import CategoryNav from "@/components/CategoryNav";
-
 import { CategoryProvider } from "../../context/CategoryContext";
+import CategoryNavWrapper from "@/components/CategoryNavWrapper";
 
 const CategoryLayout = ({ children }) => {
   return (
     <main className="main-layout">
       <CategoryProvider>
-        <CategoryNav />
+        <aside className="aside">
+          <CategoryNavWrapper />
+        </aside>
         {children}
       </CategoryProvider>
     </main>

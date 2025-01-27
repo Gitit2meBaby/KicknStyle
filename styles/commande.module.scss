@@ -1,3 +1,5 @@
+@import "./globals.scss";
+
 .checkoutPage {
   max-width: 1200px;
   margin: 2rem auto;
@@ -6,6 +8,7 @@
   h1 {
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 3rem;
   }
 
   h2 {
@@ -26,7 +29,7 @@
   padding: 1rem 0;
   border-bottom: 1px solid #eee;
 
-  &:last-child {
+  &:last-of-type {
     border-bottom: none;
   }
 
@@ -73,7 +76,7 @@
 .totals {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 2px solid #eee;
+  // border-top: 2px solid #eee;
 
   > div {
     display: flex;
@@ -86,6 +89,32 @@
       font-weight: bold;
       font-size: 1.25rem;
     }
+  }
+}
+
+.total {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid #b2b2b2;
+  border-top: 1px solid #b2b2b2;
+  span {
+    font-size: 2rem;
+    font-weight: 700;
+    &:first-of-type {
+      font-size: 1.25rem;
+      margin-top: auto;
+      color: $grayText;
+      font-weight: 500;
+    }
+  }
+}
+
+.deliveryTime {
+  p {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgb(174, 174, 174);
+    margin: 1rem 0 0 auto;
   }
 }
 
@@ -184,5 +213,93 @@
 
   &:disabled {
     background: #ccc;
+  }
+}
+
+.shippingSavings {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #7b2ce951;
+  border: 1px solid #7b2ce986;
+  border-radius: 4px;
+
+  p {
+    margin: 0;
+
+    &:first-child {
+      color: $theme;
+      font-weight: 500;
+    }
+  }
+
+  .originalPrice {
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+
+  .strikethrough {
+    color: rgb(171, 11, 11);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+  }
+}
+
+.strikethrough::before {
+  content: "";
+  position: absolute;
+  top: 1.8rem;
+  left: 0;
+  width: 110%;
+  height: 1.5px; /* Thickness of the line */
+  background-color: rgb(171, 11, 11); /* Color of the strike-through */
+  transform: rotate(-25deg); /* Rotate the line to make it diagonal */
+  transform-origin: left top;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  .quantityBtn {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1rem;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background: #e5e7eb;
+    }
+  }
+
+  .removeBtn {
+    margin-left: 1rem;
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+
+    &:hover {
+      background: #fee2e2;
+    }
   }
 }

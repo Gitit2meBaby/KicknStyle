@@ -90,15 +90,16 @@ const CartModal = ({ isOpen, onClose }) => {
         <button className={styles.closeButton} onClick={onClose}>
           ×
         </button>
-        <h2>Your Cart</h2>
+        <h2>Votre Panier</h2>
 
         {cartItems.length === 0 ? (
-          <p>Your cart is empty</p>
+          <p>Votre panier est vide</p>
         ) : (
           <>
             <div className={styles.cartItems}>
               {cartItems.map((item) => (
                 <div key={item.id} className={styles.cartItem}>
+                  <h3 className={styles.itemName}>{item.name}</h3>
                   <div className={styles.itemImage}>
                     <Image
                       src={item.image}
@@ -107,13 +108,18 @@ const CartModal = ({ isOpen, onClose }) => {
                       height={50}
                     />
                   </div>
+
                   <div className={styles.itemDetails}>
-                    <h3>{item.name}</h3>
                     {item.variants && (
                       <p className={styles.variant}>
-                        {Object.entries(item.variants)
-                          .map(([key, value]) => `${key}: ${value}`)
-                          .join(", ")}
+                        {Object.entries(item.variants).map(
+                          ([key, value], index, arr) => (
+                            <React.Fragment key={key}>
+                              <strong>{key}</strong>: {value}
+                              {index < arr.length - 1 ? ", " : ""}
+                            </React.Fragment>
+                          )
+                        )}
                       </p>
                     )}
                     <div className={styles.quantityControls}>
@@ -137,6 +143,7 @@ const CartModal = ({ isOpen, onClose }) => {
                       </button>
                     </div>
                   </div>
+
                   <div className={styles.itemPrice}>
                     ${(item.price * item.quantity).toFixed(2)}
                   </div>
@@ -144,7 +151,7 @@ const CartModal = ({ isOpen, onClose }) => {
                     onClick={() => removeItem(item.id)}
                     className={styles.removeBtn}
                   >
-                    Remove
+                    Retirer
                   </button>
                 </div>
               ))}
@@ -161,7 +168,7 @@ const CartModal = ({ isOpen, onClose }) => {
                   router.push("/commande");
                 }}
               >
-                Proceed to Checkout
+                Passer à la caisse
               </button>
             </div>
           </>

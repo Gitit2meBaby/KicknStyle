@@ -1,9 +1,9 @@
 @import "./globals.scss";
 
 .header {
-  position: fixed;
+  position: relative;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: black;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   z-index: 5;
 
@@ -11,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0.5rem 5vw;
+    padding: 1rem 5vw;
   }
 
   nav {
@@ -28,6 +28,7 @@
     transition: color 0.2s ease-in-out;
     &:hover {
       font-weight: 800;
+      color: $theme;
     }
   }
 }
@@ -46,7 +47,7 @@
   cursor: pointer;
 
   svg {
-    margin-top: 0.2rem;
+    margin-top: 0.1rem;
     fill: $light;
     &:hover {
       fill: $light;

@@ -1,7 +1,7 @@
 import React from "react";
 import { generateMetadata } from "../../lib/generateMetadata";
-import CategoryNav from "@/components/CategoryNav";
 import { CategoryProvider } from "../../context/CategoryContext";
+import CategoryNavWrapper from "@/components/CategoryNavWrapper";
 
 // export const metadata = generateMetadata(params.slug);
 
@@ -9,7 +9,9 @@ const ProductLayout = ({ children }) => {
   return (
     <main className="main-layout">
       <CategoryProvider>
-        <CategoryNav />
+        <aside className="aside">
+          <CategoryNavWrapper />
+        </aside>
         {children}
       </CategoryProvider>
     </main>

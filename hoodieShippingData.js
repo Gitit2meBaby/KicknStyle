@@ -1,4 +1,4 @@
-export const hoodieShipping = {
+const hoodieShipping = {
   // Europe
   FR: {
     name: "France",
@@ -1192,3 +1192,5 @@ export const hoodieShipping = {
     additionalPrice: 7.05,
   },
 };
+
+export default hoodieShipping;

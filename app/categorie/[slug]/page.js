@@ -4,9 +4,9 @@ import ProductGrid from "@/components/ProductGrid";
 
 export default async function CategoryPage({ params, searchParams }) {
   // Extract filter parameters
-  const priceFilter = searchParams?.price?.split("-").map(Number);
+  const priceFilter = searchParams?.prix?.split("-").map(Number);
   const attributeFilters = Object.entries(searchParams || {})
-    .filter(([key]) => key !== "price")
+    .filter(([key]) => key !== "prix")
     .reduce((acc, [key, value]) => {
       acc[key] = Array.isArray(value) ? value : [value];
       return acc;
@@ -42,15 +42,11 @@ export default async function CategoryPage({ params, searchParams }) {
     });
   });
 
+  console.log("Filtered products:", filteredProducts);
+
   return (
-    <main>
-      <h1>
-        {params.slug.replace("-", " ").toUpperCase()}
-        <span>
-          ({filteredProducts.length} of {totalProducts} products)
-        </span>
-      </h1>
+    <>
       <ProductGrid products={filteredProducts} />
-    </main>
+    </>
   );
 }

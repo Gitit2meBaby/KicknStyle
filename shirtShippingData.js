@@ -1,4 +1,4 @@
-export const tshirtShipping = {
+const tshirtShipping = {
   // Premium Shipping Countries
   JP: {
     name: "Japon",
@@ -1391,3 +1391,5 @@ export const tshirtShipping = {
     additionalPrice: 5.3,
   },
 };
+
+export default tshirtShipping;

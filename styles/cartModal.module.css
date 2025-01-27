@@ -69,6 +69,10 @@
   color: #4a5568;
 }
 
+.itemName {
+  grid-column: span 4;
+}
+
 .quantityControls {
   display: flex;
   align-items: center;
@@ -102,15 +106,19 @@
 .checkoutBtn {
   width: 100%;
   padding: 0.75rem;
-  background-color: #000;
+  background-color: #7b2ce9;
   color: white;
-  border: none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid white;
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.5s;
 }
 .checkoutBtn:hover {
-  background-color: #1a202c;
+  background-color: transparent;
+  border: 1px solid #7b2ce9;
+  color: #7b2ce9;
 }
 
 .removeBtn {

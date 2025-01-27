@@ -2,6 +2,8 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
+import SizeChartModal from "./SizeChartModal";
+
 import { addToCart } from "../lib/cartUtils";
 import {
   getPrintfulColorName,
@@ -44,6 +46,8 @@ const ProductDisplay = ({
   const [currentVariation, setCurrentVariation] = useState(null);
   const [currentStockStatus, setCurrentStockStatus] = useState(stockStatus);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [isShirt, setIsShirt] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddToCart = () => {
     // Verify we have all required selections
@@ -85,6 +89,18 @@ const ProductDisplay = ({
     setAddedToCart(true);
   };
 
+  // Function to find if shirt or Hoodie
+  useEffect(() => {
+    if (
+      description?.includes("sweat à capuche") ||
+      description?.includes("hoodie")
+    ) {
+      setIsShirt(false);
+    } else {
+      setIsShirt(true);
+    }
+  }, [description]);
+
   // Initialize selected variants based on default attributes
   useEffect(() => {
     if (attributes?.length > 0) {
@@ -100,10 +116,6 @@ const ProductDisplay = ({
 
   // Update price and availability when variants change
   useEffect(() => {
-    console.log("Current variations:", variations);
-    console.log("Selected variants:", selectedVariants);
-    console.log("All attributes:", attributes);
-
     // Check if all required variants are selected
     const requiredAttributes =
       attributes?.filter((attr) => attr.variation) || [];
@@ -111,12 +123,8 @@ const ProductDisplay = ({
       (attr) => selectedVariants[attr.name.toLowerCase()] !== undefined
     );
 
-    console.log("Required attributes:", requiredAttributes);
-    console.log("All variants selected:", allVariantsSelected);
-
     if (variations?.length > 0 && allVariantsSelected) {
       const matchingVariation = findMatchingVariation(selectedVariants);
-      console.log("Matching variation found:", matchingVariation);
       setCurrentVariation(matchingVariation);
 
       if (matchingVariation) {
@@ -130,6 +138,36 @@ const ProductDisplay = ({
       }
     }
   }, [selectedVariants, variations, attributes]);
+
+  // Initialize selected variants based on lowest price variant
+  useEffect(() => {
+    if (attributes?.length > 0 && variations?.length > 0) {
+      // Find the variation with the lowest price
+      const lowestPriceVariation = variations.reduce((lowest, current) => {
+        const currentPrice = parseFloat(current.price);
+        const lowestPrice = parseFloat(lowest.price);
+        return currentPrice < lowestPrice ? current : lowest;
+      }, variations[0]);
+
+      console.log("Lowest price variation:", lowestPriceVariation);
+
+      // Create initial variants based on the lowest price variation
+      const initialVariants = {};
+      lowestPriceVariation.attributes.forEach((attr) => {
+        const name = (attr.name || attr.attribute)
+          .toLowerCase()
+          .replace("pa_", "");
+        const value = attr.option || attr.value;
+        initialVariants[name] = value;
+      });
+
+      console.log("Setting initial variants:", initialVariants);
+      setSelectedVariants(initialVariants);
+      setCurrentVariation(lowestPriceVariation);
+      setCurrentPrice(lowestPriceVariation.price);
+      setCurrentStockStatus(lowestPriceVariation.stock_status);
+    }
+  }, [attributes, variations]);
 
   const findMatchingVariation = (selected) => {
     if (!variations?.length) {
@@ -174,7 +212,6 @@ const ProductDisplay = ({
   };
 
   // New function to find image index by color
-  // Update the findImageIndexByColor function
   const findImageIndexByColor = (colorName) => {
     const printfulColor = getPrintfulColorName(colorName);
     console.log("Looking for color:", printfulColor);
@@ -261,34 +298,6 @@ const ProductDisplay = ({
     }
   };
 
-  // const renderColorOption = (option, attributeName, isSelected) => {
-  //   const backgroundColor = getSwatchColor(option);
-  //   const isDark = isDarkColor(option);
-
-  //   return (
-  //     <label
-  //       key={option}
-  //       className={`${styles.colorOption} ${
-  //         isSelected ? styles.selectedColor : ""
-  //       }`}
-  //       title={option}
-  //     >
-  //       <input
-  //         type="radio"
-  //         name={attributeName}
-  //         value={option}
-  //         checked={isSelected}
-  //         onChange={() => handleVariantChange(attributeName, option)}
-  //         className={styles.hiddenRadio}
-  //       />
-  //       <span
-  //         className={`${styles.colorSwatch} ${isDark ? styles.darkColor : ""}`}
-  //         style={{ backgroundColor }}
-  //       ></span>
-  //     </label>
-  //   );
-  // };
-
   const renderVariantOptions = (attribute) => {
     const isColor = isColorAttribute(attribute.name);
     const isSize = isSizeAttribute(attribute.name);
@@ -331,7 +340,21 @@ const ProductDisplay = ({
 
   return (
     <div className={styles.productDisplay}>
-      <h1 className={styles.title}>{name}</h1>
+      <div className={styles.titleWrapper}>
+        <h1 className={styles.title}>{name}</h1>
+        {/* Price Display */}
+        <div className={styles.priceSection}>
+          <span>depuis...</span>
+          <h2>€{currentPrice}</h2>
+          {currentVariation?.sale_price && (
+            <span className={styles.salePrice}>
+              {" "}
+              (prix de vente: €{currentVariation.sale_price}, prix: €
+              {currentVariation.regular_price})
+            </span>
+          )}
+        </div>
+      </div>
 
       {/* Images */}
       <div className={styles.imageSection}>
@@ -356,6 +379,7 @@ const ProductDisplay = ({
                   selectedImage === index ? styles.active : ""
                 }`}
                 onClick={() => setSelectedImage(index)}
+                onMouseEnter={() => setSelectedImage(index)}
               >
                 <Image
                   src={image.src}
@@ -370,92 +394,113 @@ const ProductDisplay = ({
       </div>
 
       {/* Variants Selection */}
-      {attributes?.filter((attr) => attr.variation)?.map(renderVariantOptions)}
+      <div className={styles.topOptions}>
+        <div className={styles.variantWrapper}>
+          <div className={styles.variants}>
+            {attributes
+              ?.filter((attr) => attr.variation)
+              ?.map(renderVariantOptions)}
+          </div>
 
-      {/* Price Display */}
-      <div className={styles.priceSection}>
-        <strong>Prix:</strong> €{currentPrice}
-        {currentVariation?.sale_price && (
-          <span className={styles.salePrice}>
-            {" "}
-            (prix de vente: €{currentVariation.sale_price}, prix: €
-            {currentVariation.regular_price})
-          </span>
-        )}
-      </div>
+          <div className={styles.variantBtn}>
+            <button
+              className={`${styles.btn} ${styles.sizeChartButton}`}
+              onClick={() => setIsModalOpen(true)}
+            >
+              Tableau des tailles
+            </button>
+            <SizeChartModal
+              isShirt={isShirt}
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
+          </div>
+        </div>
 
-      {/* Quantity Selector */}
-      <div className={styles.quantitySelector}>
-        <button
-          className={styles.quantityButton}
-          onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
-        >
-          -
-        </button>
-        <input
-          type="number"
-          value={quantity}
-          onChange={(e) => setQuantity(Math.max(Number(e.target.value), 1))}
-          className={styles.quantityInput}
-          min="1"
-        />
-        <button
-          className={styles.quantityButton}
-          onClick={() => setQuantity((prev) => prev + 1)}
-        >
-          +
-        </button>
-      </div>
+        {/* Quantity Selector */}
+        <div className={styles.cartWrapper}>
+          <div className={styles.quantitySelector}>
+            <button
+              className={`${styles.quantityButton} ${styles.btn}`}
+              onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
+            >
+              -
+            </button>
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => setQuantity(Math.max(Number(e.target.value), 1))}
+              className={styles.quantityInput}
+              min="1"
+            />
+            <button
+              className={`${styles.quantityButton} ${styles.btn}`}
+              onClick={() => setQuantity((prev) => prev + 1)}
+            >
+              +
+            </button>
+          </div>
 
-      {/* Add to Cart Button */}
-      <button
-        className={styles.addToCart}
-        disabled={
-          !currentVariation || currentVariation.stock_status === "outofstock"
-        }
-        onClick={() => {
-          console.log("Add to Cart clicked");
-          console.log("Current variation:", currentVariation);
-          console.log("Selected variants:", selectedVariants);
-          handleAddToCart();
-        }}
-      >
-        {(() => {
-          const missingSelections = attributes
-            ?.filter((attr) => attr.variation)
-            ?.filter((attr) => !selectedVariants[attr.name.toLowerCase()])
-            ?.map((attr) => attr.name);
+          {/* Add to Cart Button */}
+          <button
+            className={`${styles.addToCart} ${styles.btn}`}
+            disabled={
+              !currentVariation ||
+              currentVariation.stock_status === "outofstock"
+            }
+            onClick={() => {
+              handleAddToCart();
+            }}
+          >
+            {(() => {
+              const missingSelections = attributes
+                ?.filter((attr) => attr.variation)
+                ?.filter((attr) => !selectedVariants[attr.name.toLowerCase()])
+                ?.map((attr) => attr.name);
 
-          if (missingSelections?.length > 0) {
-            return `Select ${missingSelections.join(" and ")}`;
-          }
+              if (missingSelections?.length > 0) {
+                return `Sélectionner ${missingSelections.join(" et ")}`;
+              }
 
-          if (!currentVariation) {
-            return "Combination not available";
-          }
+              if (!currentVariation) {
+                return "Combinaison non disponible";
+              }
 
-          if (currentVariation.stock_status === "outofstock") {
-            return "Out of stock";
-          }
+              if (currentVariation.stock_status === "outofstock") {
+                return "En rupture de stock";
+              }
 
-          if (addedToCart) {
-            return "Added";
-          }
+              if (addedToCart) {
+                return "Ajouté";
+              }
 
-          return "Add to Cart";
-        })()}
-      </button>
-
-      {/* Stock Status */}
-      <div className={styles.stockStatus}>
-        <strong>Stock Status:</strong> {currentStockStatus}
+              return "Ajouter au panier";
+            })()}
+          </button>
+        </div>
       </div>
 
       {/* Description */}
+      <h3 className={styles.descriptionTitle}>Détails du produit</h3>
       <div
         className={styles.description}
         dangerouslySetInnerHTML={{ __html: description }}
       />
+
+      <div className={styles.disclaimer}>
+        <p>Restrictions d'âge: Pour les adultes</p>
+        <p>EU Warranty: 2 ans</p>
+        <p>Other compliance information: Répond aux exigences REACH de l'UE.</p>
+        <br></br>
+        <p>
+          En conformité avec le Règlement pour la Sécurité Générale des Produits
+          (RSGP), oak garantit que tous les produits de consommation proposés
+          sont sûrs et conformes aux normes de l'UE. Pour toute question ou
+          préoccupation liée à la sécurité des produits, veuillez nous contacter
+          à alex.oak@company.com ou nous écrire à 123 Main Street, Anytown,
+          Country. -
+        </p>
+      </div>
     </div>
   );
 };

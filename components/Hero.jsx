@@ -27,7 +27,7 @@ const Hero = () => {
         fill
         priority
       />
-      <h1 className={nautigal.className}>Muay Thai Mode</h1>
+      <h1 className={nautigal.className}>Muay Thai Street Wear</h1>
       <div className={styles.subs}>
         <h2 className={noteable.className}>
           pour les<br></br> garçons

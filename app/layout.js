@@ -1,11 +1,11 @@
 import Header from "@/components/Header";
-import { Inter } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
 import Script from "next/script";
 
 import "./global.css";
 import CookieConsent from "@/components/CookieConsent";
 
-const inter = Inter({ subsets: ["latin"] });
+const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 export const metadata = {
   metadataBase: new URL(
@@ -106,7 +106,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={robotoMono.className}>
         <Header />
         {children}
         <CookieConsent />

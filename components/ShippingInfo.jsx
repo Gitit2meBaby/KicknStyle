@@ -1,20 +1,28 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { calculateShipping } from "../lib/shippingUtils";
 import styles from "../styles/shippingInfo.module.scss";
 
 const ShippingInfo = ({ country, items, onShippingCalculated }) => {
   const [shippingDetails, setShippingDetails] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (country && items?.length) {
-      const details = calculateShipping(country, items);
-      setShippingDetails(details);
-      onShippingCalculated(details.cost);
+      try {
+        const details = calculateShipping(country, items);
+        setShippingDetails(details);
+        onShippingCalculated(details.cost);
+        setError(null);
+      } catch (err) {
+        console.error("Shipping calculation error:", err);
+        setError("Unable to calculate shipping");
+        onShippingCalculated(0);
+      }
     }
   }, [country, items, onShippingCalculated]);
 
+  if (error) return <div className={styles.error}>{error}</div>;
   if (!shippingDetails) return null;
 
   return (
