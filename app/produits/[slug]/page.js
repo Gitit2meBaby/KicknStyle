@@ -1,7 +1,7 @@
 // app/product/[slug]/page.js
 import React from "react";
 import { notFound } from "next/navigation";
-import DisplayProduct from "@/components/ProductDisplay";
+import DisplayProduct from "../../../components/ProductDisplay";
 import { getProductBySlug } from "../../../lib/woocommerce";
 
 export const dynamic = "force-dynamic";

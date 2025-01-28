@@ -1,6 +1,6 @@
 // app/category/[slug]/page.js
-import { getProductsByCategory, getProducts } from "@/lib/woocommerce";
-import ProductGrid from "@/components/ProductGrid";
+import { getProductsByCategory } from "../../../lib/woocommerce";
+import ProductGrid from "../../../components/ProductGrid";
 
 export default async function CategoryPage({ params, searchParams }) {
   // Extract filter parameters

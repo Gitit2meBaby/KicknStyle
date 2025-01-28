@@ -1,7 +1,7 @@
 import React from "react";
-import { generateMetadata } from "../../lib/generateMetadata";
+// import { generateMetadata } from "../../lib/generateMetadata";
 import { CategoryProvider } from "../../context/CategoryContext";
-import CategoryNavWrapper from "@/components/CategoryNavWrapper";
+import CategoryNavWrapper from "../../components/CategoryNavWrapper";
 
 // export const metadata = generateMetadata(params.slug);
 

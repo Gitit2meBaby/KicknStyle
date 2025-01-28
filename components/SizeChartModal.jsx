@@ -7,8 +7,8 @@ import styles from "../styles/sizeChartModal.module.scss";
 import { hoodieInchesData, hoodieCentimetersData } from "../lib/hoodieSizes";
 import { shirtInchesData, shirtCentimetersData } from "../lib/shirtSizes";
 
-import shirtSize from "@/public/shirtSize.webp";
-import hoodieSize from "@/public/hoodieSize.webp";
+import shirtSize from "../public/shirtSize.webp";
+import hoodieSize from "../public/hoodieSize.webp";
 
 const SizeChartModal = ({ isOpen, onClose, isShirt }) => {
   const [unit, setUnit] = useState("cm");

@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { The_Nautigal } from "next/font/google";
-import { hoodieInchesData, hoodieCentimetersData } from "@/lib/hoodieSizes";
-import { shirtInchesData, shirtCentimetersData } from "@/lib/shirtSizes";
+import { hoodieInchesData, hoodieCentimetersData } from "../../lib/hoodieSizes";
+import { shirtInchesData, shirtCentimetersData } from "../../lib/shirtSizes";
 
 import styles from "../../styles/guide.module.scss";
 

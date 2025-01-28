@@ -1,9 +1,10 @@
-import Header from "@/components/Header";
+import Header from "../components/Header";
 import { Roboto_Mono } from "next/font/google";
 import Script from "next/script";
 
 import "./global.css";
-import CookieConsent from "@/components/CookieConsent";
+
+import CookieConsent from "../components/CookieConsent";
 
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 

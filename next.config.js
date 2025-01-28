@@ -12,7 +12,6 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // matching all API routes
         source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
@@ -35,6 +34,26 @@ const nextConfig = {
     WC_CONSUMER_KEY: process.env.WC_CONSUMER_KEY,
     WC_CONSUMER_SECRET: process.env.WC_CONSUMER_SECRET,
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+    console.log("Webpack build:", isServer ? "Server" : "Client");
+    return config;
+  },
+  experimental: {
+    forceSwcTransforms: true,
+  },
 };
+
+console.log("Building with environment:", {
+  WP_URL: process.env.WP_URL ? "Set" : "Not Set",
+  WC_CONSUMER_KEY: process.env.WC_CONSUMER_KEY ? "Set" : "Not Set",
+  WC_CONSUMER_SECRET: process.env.WC_CONSUMER_SECRET ? "Set" : "Not Set",
+});
 
 module.exports = nextConfig;

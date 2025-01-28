@@ -1,7 +1,7 @@
 import React from "react";
 
 import { CategoryProvider } from "../../context/CategoryContext";
-import CategoryNavWrapper from "@/components/CategoryNavWrapper";
+import CategoryNavWrapper from "../../components/CategoryNavWrapper";
 
 const CategoryLayout = ({ children }) => {
   return (
