@@ -114,6 +114,11 @@
       transform: rotate(-135deg);
     }
   }
+  &:active {
+    &::after {
+      transform: rotate(-135deg);
+    }
+  }
 }
 
 .filterContent {

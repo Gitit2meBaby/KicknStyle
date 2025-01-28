@@ -7,7 +7,7 @@
   transform: translateY(-4px);
 }
 .card:hover .image {
-  transform: scale(1.15);
+  transform: scale(1.25);
   transition: transform 8s;
 }
 

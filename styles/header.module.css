@@ -14,7 +14,7 @@
 .header nav {
   display: flex;
   align-items: center;
-  gap: 3vw;
+  gap: 5vw;
   margin-left: -5rem;
 }
 .header a {

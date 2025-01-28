@@ -30,7 +30,8 @@
 }
 .cartItem .productImage {
   flex: 0 0 60px;
-  height: 60px;
+  height: 100px;
+  width: 100px;
   position: relative;
   margin-right: 1rem;
 }
@@ -38,6 +39,8 @@
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 4px;
+  height: 100px;
+  width: 100px;
 }
 .cartItem .productInfo {
   flex: 1;
@@ -173,19 +176,22 @@
 .submitButton {
   width: 100%;
   padding: 1rem;
-  background: #000;
+  background: #7b2ce9;
   color: white;
-  border: none;
+  border: white;
   border-radius: 4px;
   font-size: 1.125rem;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 .submitButton:hover {
-  background: #333;
+  background: transparent;
+  border: 1px solid #7b2ce9;
 }
 .submitButton:disabled {
-  background: #ccc;
+  background: rgba(123, 44, 233, 0.4352941176);
+  filter: blur(1px);
+  cursor: not-allowed;
 }
 
 .shippingSavings {

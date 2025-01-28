@@ -5,14 +5,15 @@
   margin: 6rem 1rem;
 }
 .info h2 {
-  margin: 1rem;
+  margin: 0 0 2rem 0;
+  font-size: 6rem;
 }
 .info p {
   text-align: center;
   max-width: 75vw;
   line-height: 2rem;
 }
-.info button {
+.info .btn {
   margin-top: 2rem;
   background-color: #7b2ce9;
   color: #d0d0d0;

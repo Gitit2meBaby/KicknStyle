@@ -102,6 +102,9 @@
 .sectionTitle[open]::after {
   transform: rotate(-135deg);
 }
+.sectionTitle:active::after {
+  transform: rotate(-135deg);
+}
 
 .filterContent {
   padding: 0.5rem 0 0.5rem 0.5rem;

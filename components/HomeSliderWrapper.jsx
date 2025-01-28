@@ -2,29 +2,36 @@
 import dynamic from "next/dynamic";
 import { getCategoriesWithFeaturedImage } from "../lib/woocommerce";
 
-// Dynamically import the HomeSlider component with SSR disabled
 const HomeSlider = dynamic(() => import("./HomeSlider"), {
   ssr: false,
-  loading: () => <div>Loading carousel...</div>,
+  loading: () => (
+    <div className={styles.loading}>
+      <span>Chargement du carrousel...</span>
+    </div>
+  ),
 });
 
-import styles from "../styles/homeSlider.module.css";
+import styles from "../styles/homeSlider.module.scss";
 
 const HomeSliderWrapper = async () => {
   const categories = await getCategoriesWithFeaturedImage();
 
-  const filteredCategories = categories.filter(
-    (cat) => cat.slug !== "uncategorized"
+  const validCategories = categories.filter(
+    (cat) => cat.slug !== "uncategorized" && cat.count > 0
   );
 
-  if (!filteredCategories?.length) {
-    return <div>No categories found</div>;
+  if (!validCategories?.length) {
+    return (
+      <div className={styles.noCategories}>
+        <p>Aucune catégorie disponible pour le moment</p>
+      </div>
+    );
   }
 
   return (
     <section className={styles.sliderWrapper}>
-      <h3>Check out our products by category</h3>
-      <HomeSlider categories={filteredCategories} />
+      <h3>Découvrez nos produits par catégorie</h3>
+      <HomeSlider categories={validCategories} />
     </section>
   );
 };

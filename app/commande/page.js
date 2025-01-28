@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 import ShippingInfo from "../../components/ShippingInfo";
@@ -265,9 +265,20 @@ const CheckoutPage = () => {
               <h3>{item.name}</h3>
               {item.variants && (
                 <p className={styles.variants}>
-                  {Object.entries(item.variants)
-                    .map(([key, value]) => `${key}: ${value}`)
-                    .join(", ")}
+                  {Object.entries(item.variants).map(
+                    ([key, value], index, arr) => (
+                      <React.Fragment key={key}>
+                        {key.toLowerCase() === "couleur" ||
+                        key.toLowerCase() === "taille" ? (
+                          <strong>{key}</strong>
+                        ) : (
+                          key
+                        )}
+                        : {value}
+                        {index < arr.length - 1 ? ", " : ""}
+                      </React.Fragment>
+                    )
+                  )}
                 </p>
               )}
               <div className={styles.quantityControls}>

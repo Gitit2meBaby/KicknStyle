@@ -164,7 +164,7 @@ const ProductDisplay = ({
       console.log("Setting initial variants:", initialVariants);
       setSelectedVariants(initialVariants);
       setCurrentVariation(lowestPriceVariation);
-      setCurrentPrice(lowestPriceVariation.price);
+      setCurrentPrice(Number(lowestPriceVariation.price).toFixed(2));
       setCurrentStockStatus(lowestPriceVariation.stock_status);
     }
   }, [attributes, variations]);
@@ -345,12 +345,12 @@ const ProductDisplay = ({
         {/* Price Display */}
         <div className={styles.priceSection}>
           <span>depuis...</span>
-          <h2>€{currentPrice}</h2>
+          <h2>€{Number(currentPrice).toFixed(2)}</h2>
           {currentVariation?.sale_price && (
             <span className={styles.salePrice}>
               {" "}
-              (prix de vente: €{currentVariation.sale_price}, prix: €
-              {currentVariation.regular_price})
+              (prix de vente: €{Number(currentVariation.sale_price).toFixed(2)},
+              prix: €{Number(currentVariation.regular_price).toFixed(2)})
             </span>
           )}
         </div>
@@ -490,7 +490,9 @@ const ProductDisplay = ({
       <div className={styles.disclaimer}>
         <p>Restrictions d'âge: Pour les adultes</p>
         <p>EU Warranty: 2 ans</p>
-        <p>Other compliance information: Répond aux exigences REACH de l'UE.</p>
+        <p>
+          Autres informations de conformité: Répond aux exigences REACH de l'UE.
+        </p>
         <br></br>
         <p>
           En conformité avec le Règlement pour la Sécurité Générale des Produits

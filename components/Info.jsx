@@ -1,32 +1,42 @@
 import React from "react";
+import Link from "next/link";
+import { The_Nautigal } from "next/font/google";
+
+const nautigal = The_Nautigal({
+  subsets: ["latin"],
+  weight: ["700"],
+});
 
 import styles from "../styles/info.module.css";
 
 const Info = () => {
   return (
     <section className={styles.info}>
-      <h2>Your Muay Thai, Your Style</h2>
-      <h2 className={styles.title}>
-        Kick<span>&</span>Style
+      <h2 className={`${nautigal.className} ${styles.title}`}>
+        Kick<span> &</span>Style
       </h2>
       <p>
-        Welcome to Our Online Store for Muay Thai-Inspired T-Shirts! Discover
-        our exclusive collection of Muay Thai t-shirts designed for both girls
-        and boys who want to blend style with performance. Each t-shirt reflects
-        the powerful spirit, rich culture, and vibrant energy of Thai boxing,
-        making them perfect for enthusiasts and fans alike. Our unique designs
-        combine modern aesthetics with traditional elements, allowing you to
-        express your passion for Muay Thai in a stylish way. Whether you're
-        training in the ring or cheering from the sidelines, our t-shirts offer
-        both comfort and flair. Showcase Your Love for Muay Thai with Class and
-        Originality! Express Your Strength, Live Your Style!
+        Bienvenue sur notre boutique en ligne de T-shirts inspirés du Muay
+        Thai ! Découvrez notre collection exclusive de t-shirts Muay Thai conçus
+        pour les filles et les garçons qui souhaitent allier style et
+        performance. Chaque t-shirt reflète l'esprit puissant, la culture riche
+        et l'énergie vibrante de la boxe thaïlandaise, ce qui les rend parfaits
+        pour les passionnés et les fans. Nos designs uniques combinent une
+        esthétique moderne avec des éléments traditionnels, vous permettant
+        d'exprimer votre passion pour le Muay Thai avec style. Que vous vous
+        entraîniez sur le ring ou que vous applaudissiez depuis le banc de
+        touche, nos t-shirts offrent à la fois confort et style. Montrez votre
+        amour pour le Muay Thai avec classe et originalité ! Exprimez votre
+        force, vivez votre style !
       </p>
       <p style={{ marginTop: "1rem" }}>
-        Shop now to find the perfect t-shirt that embodies your dedication to
-        this incredible sport.
+        Achetez maintenant pour trouver le t-shirt parfait qui incarne votre
+        dévouement à ce sport incroyable.
       </p>
 
-      <button className="btn">See Products</button>
+      <Link href="/categorie/tous" className={styles.btn}>
+        Voir les produits
+      </Link>
     </section>
   );
 };

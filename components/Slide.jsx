@@ -19,7 +19,7 @@ const Slide = ({ category }) => {
               className={styles.image}
               priority={false}
             />
-            <button className="btn">{category.name}</button>
+            <button className={styles.btn}>{category.name}</button>
           </>
         ) : (
           <div className={styles.placeholder}>{category.name[0]}</div>

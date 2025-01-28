@@ -158,7 +158,7 @@ const CartModal = ({ isOpen, onClose }) => {
             </div>
             <div className={styles.cartFooter}>
               <div className={styles.subtotal}>
-                <span>Subtotal:</span>
+                <span>Total:</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
               <button

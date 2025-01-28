@@ -1,0 +1,36 @@
+.bannerContainer {
+  width: 100%;
+  background-color: #1a1a1a;
+  color: white;
+  overflow: hidden;
+  padding: 2rem;
+  border-top: 2px solid white;
+}
+
+.banner {
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  animation: scroll 200s linear infinite;
+}
+.banner:hover {
+  animation-play-state: paused;
+}
+
+.content {
+  white-space: nowrap;
+  font-size: 2rem;
+  font-weight: 500;
+  padding-right: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}/*# sourceMappingURL=scrollingBanner.module.css.map */
