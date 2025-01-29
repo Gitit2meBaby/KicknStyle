@@ -1,23 +1,12 @@
 {
-  "builds": [
-    {
-      "src": "next.config.js",
-      "use": "@vercel/next"
-    }
-  ],
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
   "build": {
     "env": {
       "NODE_OPTIONS": "--max-old-space-size=4096"
-    }
-  },
-  "env": {
-    "NEXT_PUBLIC_WORDPRESS_URL": "@wordpress_url",
-    "WC_CONSUMER_KEY": "@wc_consumer_key",
-    "WC_CONSUMER_SECRET": "@wc_consumer_secret"
-  },
-  "git": {
-    "deploymentEnabled": {
-      "main": true
     }
   }
 }
