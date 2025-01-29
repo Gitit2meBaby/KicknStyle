@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
+    "critters": "^0.0.25",
     "next": "14.0.4",
     "next-sitemap": "^4.2.3",
     "react": "18.2.0",

@@ -30,7 +30,7 @@ const nextConfig = {
     ];
   },
   env: {
-    WP_URL: process.env.WP_URL,
+    WP_URL: process.env.NEXT_PUBLIC_WORDPRESS_URL,
     WC_CONSUMER_KEY: process.env.WC_CONSUMER_KEY,
     WC_CONSUMER_SECRET: process.env.WC_CONSUMER_SECRET,
   },
@@ -42,18 +42,18 @@ const nextConfig = {
         tls: false,
       };
     }
-    console.log("Webpack build:", isServer ? "Server" : "Client");
     return config;
   },
-  experimental: {
-    forceSwcTransforms: true,
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
   },
+  // Optional optimizations that are stable
+  experimental: {
+    optimizeCss: true,
+  },
+  // Add error page handling
+  output: "standalone",
 };
-
-console.log("Building with environment:", {
-  WP_URL: process.env.WP_URL ? "Set" : "Not Set",
-  WC_CONSUMER_KEY: process.env.WC_CONSUMER_KEY ? "Set" : "Not Set",
-  WC_CONSUMER_SECRET: process.env.WC_CONSUMER_SECRET ? "Set" : "Not Set",
-});
 
 module.exports = nextConfig;
