@@ -45,15 +45,39 @@ const nextConfig = {
     return config;
   },
   swcMinify: true,
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
-  },
-  // Optional optimizations that are stable
-  experimental: {
-    optimizeCss: true,
-  },
-  // Add error page handling
+  poweredByHeader: false,
+  reactStrictMode: true,
+  trailingSlash: false,
+  pageExtensions: ["js", "jsx", "ts", "tsx"],
+  // Explicitly set output
   output: "standalone",
+  // Disable image optimization during development
+  images: {
+    unoptimized: process.env.NODE_ENV === "development",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "violet-fly-845239.hostingersite.com",
+        pathname: "/**",
+      },
+    ],
+  },
+  // Disable certain experimental features
+  experimental: {
+    optimizeCss: false, // Disable CSS optimization
+    scrollRestoration: false,
+    legacyBrowsers: false,
+  },
+  // Configure build output
+  distDir: ".next",
+  // Add build trace options
+  generateBuildId: async () => {
+    return "build-" + Date.now();
+  },
+  onDemandEntries: {
+    maxInactiveAge: 60 * 1000,
+    pagesBufferLength: 2,
+  },
 };
 
 module.exports = nextConfig;
