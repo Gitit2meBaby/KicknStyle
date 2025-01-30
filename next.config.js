@@ -9,57 +9,22 @@ const nextConfig = {
       },
     ],
   },
-  async headers() {
-    return [
-      {
-        source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          {
-            key: "Access-Control-Allow-Methods",
-            value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-          },
-          {
-            key: "Access-Control-Allow-Headers",
-            value:
-              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-          },
-        ],
-      },
-    ];
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        fs: false,
-        net: false,
-        tls: false,
-      };
-    }
+  // Simplify the config
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false, net: false, tls: false };
     return config;
   },
-  distDir: ".next",
-  generateBuildId: async () => {
-    return "build-" + Date.now();
-  },
-  onDemandEntries: {
-    maxInactiveAge: 60 * 1000,
-    pagesBufferLength: 2,
-  },
-  experimental: {
-    optimizeCss: false,
-  },
+  // Force all pages to be server-side rendered
   output: "standalone",
-  swcMinify: true,
-  poweredByHeader: false,
-  reactStrictMode: true,
-  env: {
-    NEXT_PUBLIC_WORDPRESS_URL: process.env.NEXT_PUBLIC_WORDPRESS_URL || "",
-    NEXT_PUBLIC_WC_CONSUMER_KEY: process.env.NEXT_PUBLIC_WC_CONSUMER_KEY || "",
-    NEXT_PUBLIC_WC_CONSUMER_SECRET:
-      process.env.NEXT_PUBLIC_WC_CONSUMER_SECRET || "",
+  experimental: {
+    // Disable static page generation optimization
+    isrMemoryCacheSize: 0,
+    // Prevent build trace collection issues
+    turbotrace: {
+      enabled: false,
+    },
   },
+  productionBrowserSourceMaps: false,
 };
 
 module.exports = nextConfig;

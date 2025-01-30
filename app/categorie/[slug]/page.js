@@ -2,6 +2,8 @@
 import { getProductsByCategory } from "../../../lib/woocommerce";
 import ProductGrid from "../../../components/ProductGrid";
 
+export const dynamic = "force-dynamic";
+
 export default async function CategoryPage({ params, searchParams }) {
   // Extract filter parameters
   const priceFilter = searchParams?.prix?.split("-").map(Number);
