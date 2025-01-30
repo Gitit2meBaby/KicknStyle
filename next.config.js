@@ -39,6 +39,14 @@ const nextConfig = {
     }
     return config;
   },
+  distDir: ".next",
+  generateBuildId: async () => {
+    return "build-" + Date.now();
+  },
+  onDemandEntries: {
+    maxInactiveAge: 60 * 1000,
+    pagesBufferLength: 2,
+  },
   experimental: {
     optimizeCss: false,
   },
