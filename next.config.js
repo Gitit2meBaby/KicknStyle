@@ -8,7 +8,6 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
-    unoptimized: process.env.NODE_ENV === "development",
   },
   async headers() {
     return [
@@ -30,38 +29,21 @@ const nextConfig = {
       },
     ];
   },
-  // Add these configurations
-  experimental: {
-    optimizeCss: false,
-    browsersListForSwc: false,
-    legacyBrowsers: false,
-  },
-  // Modify webpack configuration
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
         fs: false,
         net: false,
         tls: false,
-        crypto: false,
-        stream: false,
-        path: false,
       };
     }
-
-    // Add this to prevent potential circular dependencies
-    config.module.rules.push({
-      test: /\.js$/,
-      enforce: "pre",
-      use: ["source-map-loader"],
-    });
-
     return config;
   },
-  // Add output configuration
+  experimental: {
+    optimizeCss: false,
+  },
   output: "standalone",
-  // Disable specific optimizations that might cause issues
-  swcMinify: false,
+  swcMinify: true,
   poweredByHeader: false,
   reactStrictMode: true,
   env: {
