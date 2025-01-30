@@ -8,6 +8,7 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+    unoptimized: process.env.NODE_ENV === "development",
   },
   async headers() {
     return [
@@ -29,55 +30,16 @@ const nextConfig = {
       },
     ];
   },
-  env: {
-    WP_URL: process.env.NEXT_PUBLIC_WORDPRESS_URL,
-    WC_CONSUMER_KEY: process.env.WC_CONSUMER_KEY,
-    WC_CONSUMER_SECRET: process.env.WC_CONSUMER_SECRET,
-  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      config.resolve.fallback = {
-        fs: false,
-        net: false,
-        tls: false,
-      };
+      config.resolve.fallback = { fs: false, net: false, tls: false };
     }
     return config;
   },
   swcMinify: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  trailingSlash: false,
-  pageExtensions: ["js", "jsx", "ts", "tsx"],
-  // Explicitly set output
   output: "standalone",
-  // Disable image optimization during development
-  images: {
-    unoptimized: process.env.NODE_ENV === "development",
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "violet-fly-845239.hostingersite.com",
-        pathname: "/**",
-      },
-    ],
-  },
-  // Disable certain experimental features
-  experimental: {
-    optimizeCss: false, // Disable CSS optimization
-    scrollRestoration: false,
-    legacyBrowsers: false,
-  },
-  // Configure build output
-  distDir: ".next",
-  // Add build trace options
-  generateBuildId: async () => {
-    return "build-" + Date.now();
-  },
-  onDemandEntries: {
-    maxInactiveAge: 60 * 1000,
-    pagesBufferLength: 2,
-  },
 };
 
 module.exports = nextConfig;

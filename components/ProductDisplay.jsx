@@ -161,7 +161,6 @@ const ProductDisplay = ({
         initialVariants[name] = value;
       });
 
-      console.log("Setting initial variants:", initialVariants);
       setSelectedVariants(initialVariants);
       setCurrentVariation(lowestPriceVariation);
       setCurrentPrice(Number(lowestPriceVariation.price).toFixed(2));
@@ -174,8 +173,6 @@ const ProductDisplay = ({
       console.log("No variations available");
       return null;
     }
-
-    console.log("Finding variation for:", selected);
 
     return variations.find((variation) => {
       console.log("Checking variation:", variation);
@@ -214,7 +211,6 @@ const ProductDisplay = ({
   // New function to find image index by color
   const findImageIndexByColor = (colorName) => {
     const printfulColor = getPrintfulColorName(colorName);
-    console.log("Looking for color:", printfulColor);
 
     return images.findIndex((image) => {
       // Check for hex code in image metadata first
