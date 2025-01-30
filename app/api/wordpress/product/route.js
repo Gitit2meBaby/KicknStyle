@@ -4,8 +4,8 @@ import WooCommerce from "@woocommerce/woocommerce-rest-api";
 async function getFeaturedProducts() {
   const api = new WooCommerce({
     url: process.env.WP_URL,
-    consumerKey: process.env.WC_CONSUMER_KEY,
-    consumerSecret: process.env.WC_CONSUMER_SECRET,
+    consumerKey: process.env.NEXT_PUBLIC_WC_CONSUMER_KEY,
+    consumerSecret: process.env.NEXT_PUBLIC_WC_CONSUMER_SECRET,
     version: "wc/v3",
   });
 

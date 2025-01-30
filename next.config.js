@@ -39,7 +39,12 @@ const nextConfig = {
   swcMinify: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  output: "standalone",
+  env: {
+    NEXT_PUBLIC_WORDPRESS_URL: process.env.NEXT_PUBLIC_WORDPRESS_URL || "",
+    NEXT_PUBLIC_WC_CONSUMER_KEY: process.env.NEXT_PUBLIC_WC_CONSUMER_KEY || "",
+    NEXT_PUBLIC_WC_CONSUMER_SECRET:
+      process.env.NEXT_PUBLIC_WC_CONSUMER_SECRET || "",
+  },
 };
 
 module.exports = nextConfig;
